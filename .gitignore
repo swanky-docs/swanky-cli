@@ -1,0 +1,10 @@
+*.DS_Store
+*.sublime-*
+_gh_pages
+node_modules/
+reports/
+.idea
+.tmp
+*.log
+log.txt
+coverage/
