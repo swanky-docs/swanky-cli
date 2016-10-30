@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk')
+const program = require('commander')
+
+// Define the Swanky CLI
+program
+  .version(require('../package').version)
+  .usage('<command> [options]')
+  .command('init [project-name]', 'generate a new project', { isDefault: true })
+  .parse(process.argv)
