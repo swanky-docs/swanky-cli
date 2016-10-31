@@ -18,7 +18,8 @@
     },
     "ghooks": {
       "pre-commit": "npm run exact-semver",
-      "commit-msg": "./node_modules/cz-customizable-ghooks/lib/index.js $2"
+      "commit-msg": "./node_modules/cz-customizable-ghooks/lib/index.js $2",
+      "pre-push": "npm-run-all verify test:unit:once --silent"
     }
   },
   "bin": {
@@ -47,7 +48,7 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chokidar-cli": "1.2.0",
-    "codecov.io": "^0.1.6",
+    "codecov.io": "0.1.6",
     "cz-conventional-changelog": "1.2.0",
     "cz-customizable": "4.0.0",
     "cz-customizable-ghooks": "1.3.0",
@@ -56,7 +57,7 @@
     "eslint-formatter-pretty": "1.1.0",
     "exact-semver": "1.2.0",
     "ghooks": "1.3.2",
-    "istanbul": "^0.4.5",
+    "istanbul": "0.4.5",
     "mocha": "3.1.2",
     "npm-run-all": "3.1.1",
     "semantic-release": "4.3.5"
@@ -83,10 +84,5 @@
     "verify:js": "eslint -c config/verify/.eslintrc -f node_modules/eslint-formatter-pretty .; exit 0",
     "verify:js:watch": "chokidar 'bin/**/*.js' 'build/**/*.js' 'lib/**/*.js' 'tasks/**/*.js' 'test/**/*.js' 'config/**/*.js' -c 'npm run verify:js' --initial --silent",
     "verify:watch": "npm run verify:js:watch"
-  },
-  "ghooks": {
-    "pre-commit": "npm run exact-semver",
-    "commit-msg": "./node_modules/cz-customizable-ghooks/lib/index.js $2",
-    "pre-push": "npm-run-all verify test:unit:once --silent"
   }
 }
