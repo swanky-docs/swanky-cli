@@ -2,6 +2,7 @@
 *.sublime-*
 _gh_pages
 node_modules/
+test/unit/mock-builds/
 reports/
 .idea
 .tmp

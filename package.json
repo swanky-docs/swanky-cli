@@ -26,37 +26,40 @@
     "swanky-init": "bin/swanky-init"
   },
   "dependencies": {
-    "async": "^2.1.2",
-    "chalk": "^1.1.3",
-    "clear": "^0.0.1",
-    "command-exists": "^1.0.2",
-    "commander": "^2.9.0",
-    "cross-spawn": "^4.0.2",
-    "deep-extend": "^0.4.1",
-    "download-git-repo": "^0.2.1",
-    "eslint": "^3.9.0",
-    "inquirer": "^1.2.2",
-    "lodash": "^4.16.4",
-    "mem-fs": "^1.1.3",
-    "mem-fs-editor": "^2.3.0",
-    "mkdirp": "^0.5.1",
-    "ora": "^0.3.0",
-    "os": "^0.1.1",
-    "rimraf": "^2.5.4",
-    "uid": "^0.0.2"
+    "async": "2.1.2",
+    "chalk": "1.1.3",
+    "clear": "0.0.1",
+    "command-exists": "1.0.2",
+    "commander": "2.9.0",
+    "cross-spawn": "4.0.2",
+    "deep-extend": "0.4.1",
+    "download-git-repo": "0.2.1",
+    "inquirer": "1.2.2",
+    "lodash": "4.16.4",
+    "mem-fs": "1.1.3",
+    "mem-fs-editor": "2.3.0",
+    "mkdirp": "0.5.1",
+    "ora": "0.3.0",
+    "os": "0.1.1",
+    "rimraf": "2.5.4",
+    "uid": "0.0.2"
   },
   "devDependencies": {
-    "chokidar-cli": "^1.2.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "cz-customizable": "^4.0.0",
-    "cz-customizable-ghooks": "^1.3.0",
-    "eslint": "^3.9.0",
-    "eslint-config-kentcdodds": "^10.1.0",
-    "eslint-formatter-pretty": "^1.1.0",
-    "exact-semver": "^1.2.0",
-    "ghooks": "^1.3.2",
-    "npm-run-all": "^3.1.1",
-    "semantic-release": "^4.3.5"
+    "chai": "3.5.0",
+    "chokidar-cli": "1.2.0",
+    "codecov.io": "^0.1.6",
+    "cz-conventional-changelog": "1.2.0",
+    "cz-customizable": "4.0.0",
+    "cz-customizable-ghooks": "1.3.0",
+    "eslint": "3.9.0",
+    "eslint-config-kentcdodds": "10.1.0",
+    "eslint-formatter-pretty": "1.1.0",
+    "exact-semver": "1.2.0",
+    "ghooks": "1.3.2",
+    "istanbul": "^0.4.5",
+    "mocha": "3.1.2",
+    "npm-run-all": "3.1.1",
+    "semantic-release": "4.3.5"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -66,15 +69,24 @@
     "url": "https://github.com/swanky-docs/swanky-cli.git"
   },
   "scripts": {
+    "commit": "git-cz",
+    "exact-semver": "exact-semver",
+    "pre-release": "npm-run-all verify test:coverage build ",
+    "report-coverage": "cat ./reports/coverage.json | codecov",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "npm run test:unit",
+    "test:check-coverage": "istanbul check-coverage reports/coverage.json --config config/test/istanbul.yml",
+    "test:coverage": "npm-run-all test:unit:once test:check-coverage --silent",
+    "test:unit": "rimraf test/e2e/mock-builds && NODE_ENV=test mocha --opts config/test/mocha.opts",
+    "test:unit:once": "istanbul cover --config config/test/istanbul.yml _mocha -- --opts config/test/mocha.opts",
     "verify": "npm run verify:js --silent",
-    "verify:js": "eslint -c config/verify/eslint.json -f node_modules/eslint-formatter-pretty .; exit 0",
+    "verify:js": "eslint -c config/verify/.eslintrc -f node_modules/eslint-formatter-pretty .; exit 0",
     "verify:js:watch": "chokidar 'bin/**/*.js' 'build/**/*.js' 'lib/**/*.js' 'tasks/**/*.js' 'test/**/*.js' 'config/**/*.js' -c 'npm run verify:js' --initial --silent",
-    "verify:watch": "npm run verify:js:watch",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "verify:watch": "npm run verify:js:watch"
   },
   "ghooks": {
     "pre-commit": "npm run exact-semver",
     "commit-msg": "./node_modules/cz-customizable-ghooks/lib/index.js $2",
-    "pre-push": "npm-run-all verify"
+    "pre-push": "npm-run-all verify test:unit:once --silent"
   }
 }

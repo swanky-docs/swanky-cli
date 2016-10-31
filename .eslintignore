@@ -1,1 +1,2 @@
 build/**/templates
+test/e2e/mock-builds

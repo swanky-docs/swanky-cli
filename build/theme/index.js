@@ -29,7 +29,9 @@ function downloadAndGenerate (theme, tmp, callback) {
 
   const spinner = ora('downloading theme template')
 
-  spinner.start()
+  if (process.env.NODE_ENV !== 'test') {
+    spinner.start()
+  }
 
   download('swanky-docs/swanky-theme', tmp, { clone: false }, function (err) {
     spinner.stop()

@@ -10,6 +10,7 @@ const program = require('commander')
 const logger = require('../lib/logger')
 const utils = require('../lib/utils')
 const greet = require('../lib/greet')
+const goodbye = require('../lib/goodbye')
 const defaults = require('../lib/defaults')
 
 // tasks
@@ -40,7 +41,12 @@ function run() {
   logger.head('1. Configuring documentation. ✓')
 
   ask((results) => {
-    build(results)
+    build(results, () => {
+      logger.log('')
+      logger.head('4. Documentation generated successfully ✓')
+
+      goodbye();
+    })
   })
 }
 

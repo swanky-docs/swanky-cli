@@ -4,7 +4,6 @@ const editor = require('mem-fs-editor')
 
 // Lib
 const logger = require('../lib/logger')
-const goodbye = require('../lib/goodbye')
 
 // Build
 const base = require('./base')
@@ -16,9 +15,12 @@ const install = require('./install')
 const store = memFs.create()
 const fs = editor.create(store)
 
-module.exports = function(config) {
-  console.log('')
+module.exports = function(config, onCompleteCallback) {
+  logger.log('')
   logger.head('2. Building documentation. ✓')
+
+  // Add base path to config
+  config.basePath = config.basePath ? config.basePath : process.cwd()
 
   async.series([
     async.apply(base, config, fs),
@@ -34,10 +36,7 @@ module.exports = function(config) {
           install(config, callback)
         })
       ], () => {
-        console.log('')
-        logger.head('4. Documentation generated successfully ✓')
-
-        goodbye();
+        onCompleteCallback()
       })
     })
   });

@@ -5,14 +5,14 @@ module.exports = function(basePath, template, config, overwrite, fs, cb) {
   function writeTemplate() {
     fs.copyTpl(
       utils.templatePath(basePath, template.src),
-      utils.destinationPath(template.dest),
+      utils.destinationPath(config.basePath, template.dest),
       config
     )
 
     cb()
   }
 
-  if(!fs.exists(utils.destinationPath(template.dest)) || overwrite) {
+  if(!fs.exists(utils.destinationPath(config.basePath, template.dest)) || overwrite) {
     writeTemplate()
   } else {
     confirmOverwrite(template.dest, function(shouldOverwrite) {

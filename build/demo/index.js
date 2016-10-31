@@ -17,20 +17,20 @@ module.exports = function(config, fs, callback) {
     // -----------------------------------------------------
     async.series([
       // Remove files
-      async.apply(removeFiles, templateConfig.remove, fs),
+      async.apply(removeFiles, templateConfig.remove, config, fs),
       // Write templates
       async.apply(writeTemplates, templateConfig.templates, config, fs),
       // Write files
       async.apply(writeFiles, templateConfig.files, config, fs),
       // Extend files
-      async.apply(extendFiles, templateConfig.extends, fs)
+      async.apply(extendFiles, templateConfig.extends, config, fs)
     ], callback)
   }
 }
 
-function removeFiles(files, fs, callback) {
+function removeFiles(files, config, fs, callback) {
   async.eachLimit(files, 1, function(file, cb) {
-    removeFile(file, fs, cb)
+    removeFile(file, config, fs, cb)
   }, callback)
 }
 
@@ -46,8 +46,8 @@ function writeFiles(files, config, fs, callback) {
   }, callback)
 }
 
-function extendFiles(files, fs, callback) {
+function extendFiles(files, config, fs, callback) {
   async.eachLimit(files, 1, function(file, cb) {
-    extendFile(file, fs, cb)
+    extendFile(file, config, fs, cb)
   }, callback)
 }

@@ -1,0 +1,27 @@
+{
+  "name": "swanky-cli-test",
+  "author": "John Doe",
+  "description": "Swanky Documentation",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development node src/config/start/serve.dev.js",
+    "prebuild": "rimraf docs/",
+    "build": "npm run build:prod",
+    "build:serve": "npm-run-all build serve:prod",
+    "build:prod": "NODE_ENV=production webpack -p --progress --config src/config/build/build.prod.js --profile --colors",
+    "serve:prod": "http-server docs -o"
+  },
+  "dependencies": {
+    "prismjs": "1.5.1",
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "graceful-fs": "4.1.9",
+    "http-server": "0.9.0",
+    "npm-run-all": "3.1.1",
+    "rimraf": "2.5.4",
+    "swanky-server": "2.6.1",
+    "webpack": "2.1.0-beta.25",
+    "swanky-processor-ngdocs": "2.1.0"
+  }
+}
