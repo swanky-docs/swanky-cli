@@ -1,7 +1,7 @@
 {
   "name": "swanky-cli",
   "preferGlobal": true,
-  "description": "Swanky Docs CLI for rapid development of pattern libraries, component libraries and documentation.",
+  "description": "A simple CLI for scaffolding Swanky Docs projects.",
   "author": "Rod Leviton",
   "license": "MIT",
   "keywords": [
