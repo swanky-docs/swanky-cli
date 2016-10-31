@@ -3,9 +3,10 @@ const extendFile = require('../../tasks/extend-file')
 const removeFile = require('../../tasks/remove-file')
 const writeTemplate = require('../../tasks/write-template')
 const writeFile = require('../../tasks/write-file')
+const templateConfigBuilder = require('./template-config.js')
 
 module.exports = function(config, fs, callback) {
-  const templateConfig = require('./template-config.js')(config)
+  const templateConfig = templateConfigBuilder(config)
 
   if(!config.demo) {
     callback()
@@ -16,30 +17,37 @@ module.exports = function(config, fs, callback) {
     // -----------------------------------------------------
     async.series([
       // Remove files
-      function(callback) {
-        async.eachLimit(templateConfig.remove, 1, function(file, cb) {
-          removeFile(file, fs, cb)
-        }, callback)
-      },
+      async.apply(removeFiles, templateConfig.remove, fs),
       // Write templates
-      function(callback) {
-        async.eachLimit(templateConfig.templates, 1, function(template, cb) {
-          writeTemplate(__dirname, template, config, true, fs, cb)
-        }, callback)
-      },
+      async.apply(writeTemplates, templateConfig.templates, config, fs),
       // Write files
-      function(callback) {
-        async.eachLimit(templateConfig.files, 1, function(file, cb) {
-          writeFile(__dirname, file, config, true, fs, cb)
-        }, callback)
-      },
+      async.apply(writeFiles, templateConfig.files, config, fs),
       // Extend files
-      function(callback) {
-        async.eachLimit(templateConfig.extends, 1, function(extend, cb) {
-          extendFile(extend, fs, cb)
-        }, callback)
-      }
+      async.apply(extendFiles, templateConfig.extends, fs)
     ], callback)
   }
+}
 
+function removeFiles(files, fs, callback) {
+  async.eachLimit(files, 1, function(file, cb) {
+    removeFile(file, fs, cb)
+  }, callback)
+}
+
+function writeTemplates(templates, config, fs, callback) {
+  async.eachLimit(templates, 1, function(template, cb) {
+    writeTemplate(__dirname, template, config, true, fs, cb)
+  }, callback)
+}
+
+function writeFiles(files, config, fs, callback) {
+  async.eachLimit(files, 1, function(file, cb) {
+    writeFile(__dirname, file, config, true, fs, cb)
+  }, callback)
+}
+
+function extendFiles(files, fs, callback) {
+  async.eachLimit(files, 1, function(file, cb) {
+    extendFile(file, fs, cb)
+  }, callback)
 }

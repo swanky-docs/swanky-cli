@@ -4,22 +4,18 @@ const os = require('os')
 const uid = require('uid')
 const rm = require('rimraf').sync
 const ora = require('ora')
-const utils = require('../../lib/utils')
+const logger = require('../../lib/logger')
 const writeThemeTemplate = require('../../tasks/write-theme-template')
+const templateConfigBuilder = require('./template-config.js')
 
 module.exports = function(config, fs, callback) {
   const tmp = os.tmpdir() + '/swanky-docs-theme-template-' + uid()
-  const templateConfig = require('./template-config.js')(config, tmp)
+  const templateConfig = templateConfigBuilder(config, tmp)
 
   async.series([
-    function(callback) {
-      downloadAndGenerate(config.theme, tmp, callback)
-    },
-    function(callback) {
-      async.eachLimit(templateConfig.files, 1, function(file, cb) {
-        writeThemeTemplate(file, config, false, fs, cb)
-      }, callback)
-    }
+    async.apply(downloadAndGenerate, config.theme, tmp),
+    // Write theme templates
+    async.apply(writeThemeTemplates, templateConfig.files, config, fs)
   ], callback)
 }
 
@@ -42,7 +38,15 @@ function downloadAndGenerate (theme, tmp, callback) {
       rm(tmp)
     })
 
-    if (err) logger.fatal('Failed to download ' + theme + 'theme: ' + err.message.trim())
+    if (err) {
+      logger.fatal('Failed to download ' + theme + 'theme: ' + err.message.trim())
+    }
     callback();
   })
+}
+
+function writeThemeTemplates(files, config, fs, callback) {
+  async.eachLimit(files, 1, function(file, cb) {
+    writeThemeTemplate(file, config, false, fs, cb)
+  }, callback)
 }

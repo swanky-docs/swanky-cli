@@ -15,8 +15,8 @@ module.exports = function(basePath, template, config, overwrite, fs, cb) {
   if(!fs.exists(utils.destinationPath(template.dest)) || overwrite) {
     writeTemplate()
   } else {
-    confirmOverwrite(template.dest, function(overwrite) {
-      if (overwrite) {
+    confirmOverwrite(template.dest, function(shouldOverwrite) {
+      if (shouldOverwrite) {
         writeTemplate()
       } else {
         cb()

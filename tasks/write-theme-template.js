@@ -14,8 +14,8 @@ module.exports = function(file, config, overwrite, fs, cb) {
   if(!fs.exists(utils.destinationPath(file.dest)) || overwrite) {
     writeFile()
   } else {
-    confirmOverwrite(file.dest, function(overwrite) {
-      if (overwrite) {
+    confirmOverwrite(file.dest, function(shouldOverwrite) {
+      if (shouldOverwrite) {
         writeFile()
       } else {
         cb()
