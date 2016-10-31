@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   MOCK_BUILDS: {
-    BASE: path.join(process.cwd(), 'test/e2e/mock-builds'),
+    BASE: path.join(process.cwd(), 'test/unit/mock-builds'),
     TYPES: {
       DEMO: 'demo'
     }

@@ -1,2 +1,2 @@
 build/**/templates
-test/e2e/mock-builds
+test/unit/mock-builds/**/*
