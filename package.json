@@ -79,7 +79,7 @@
     "test:check-coverage": "istanbul check-coverage reports/coverage.json --config config/test/istanbul.yml",
     "test:coverage": "npm-run-all test:unit:once test:check-coverage --silent",
     "test:unit": "rimraf test/unit/mock-builds && mocha --opts config/test/mocha.opts",
-    "test:unit:once": "NODE_ENV=test istanbul cover --config config/test/istanbul.yml _mocha -- --opts config/test/mocha.opts",
+    "test:unit:once": "rimraf test/unit/mock-builds && NODE_ENV=test istanbul cover --config config/test/istanbul.yml _mocha -- --opts config/test/mocha.opts",
     "verify": "npm run verify:js --silent",
     "verify:js": "eslint -c config/verify/.eslintrc -f node_modules/eslint-formatter-pretty .; exit 0",
     "verify:js:watch": "chokidar 'bin/**/*.js' 'build/**/*.js' 'lib/**/*.js' 'tasks/**/*.js' 'test/**/*.js' 'config/**/*.js' -c 'npm run verify:js' --initial --silent",
