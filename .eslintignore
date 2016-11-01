@@ -1,2 +1,2 @@
-build/**/templates
+src/build/**/templates
 test/unit/mock-builds/**/*

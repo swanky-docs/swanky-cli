@@ -1,3 +1,2 @@
 test/**/*.spec.js
 --no-timeouts
---ui bdd

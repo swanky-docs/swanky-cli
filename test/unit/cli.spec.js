@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 const exists = require('fs').existsSync
-const build = require('../../build')
+const build = require('../../src/build')
 
 // Configurations
 const MOCK_DEMO_SITE_CONFIG = require('./fixtures/mock-demo-site.config')

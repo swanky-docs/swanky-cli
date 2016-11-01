@@ -3,7 +3,8 @@ const constants = require('../test.constants')
 
 module.exports = {
   basePath: path.join(constants.MOCK_BUILDS.BASE, constants.MOCK_BUILDS.TYPES.DEMO),
-  name: 'swanky-cli-test',
+  name: 'Swanky CLI Test',
+  nameNormalized: 'swanky-cli-test',
   src: 'src',
   output: 'docs',
   author: 'John Doe',

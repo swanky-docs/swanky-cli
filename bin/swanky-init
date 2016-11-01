@@ -7,14 +7,14 @@ const inquirer = require('inquirer')
 const program = require('commander')
 
 // Lib
-const logger = require('../lib/logger')
-const utils = require('../lib/utils')
-const greet = require('../lib/greet')
-const goodbye = require('../lib/goodbye')
-const defaults = require('../lib/defaults')
+const logger = require('../src/lib/logger')
+const utils = require('../src/lib/utils')
+const greet = require('../src/lib/greet')
+const goodbye = require('../src/lib/goodbye')
+const defaults = require('../src/lib/defaults')
 
 // tasks
-const build = require('../build')
+const build = require('../src/build')
 
 // -----------------------------------------------------
 // Help
@@ -41,6 +41,9 @@ function run() {
   logger.head('1. Configuring documentation. ✓')
 
   ask((results) => {
+    // TODO - create flow to create new folder or current directory
+    results.nameNormalized = _.kebabCase(results.name);
+
     build(results, () => {
       logger.log('')
       logger.head('4. Documentation generated successfully ✓')
@@ -62,7 +65,7 @@ function ask(callback) {
       name: 'name',
       type: 'input',
       message: 'Project name:',
-      default: program.args[0] || _.kebabCase(utils.getCurrentDirectoryBase())
+      default: defaults.NAME
     },
     {
       type: 'input',

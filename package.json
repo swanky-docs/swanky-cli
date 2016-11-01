@@ -1,5 +1,6 @@
 {
   "name": "swanky-cli",
+  "version": "0.0.0-semantically-released",
   "preferGlobal": true,
   "description": "A simple CLI for scaffolding Swanky Docs projects.",
   "author": "Rod Leviton",
@@ -35,6 +36,7 @@
     "cross-spawn": "4.0.2",
     "deep-extend": "0.4.1",
     "download-git-repo": "0.2.1",
+    "fs-extra": "^1.0.0",
     "inquirer": "1.2.2",
     "lodash": "4.16.4",
     "mem-fs": "1.1.3",
@@ -75,14 +77,15 @@
     "pre-release": "npm-run-all verify test:coverage build ",
     "report-coverage": "cat ./reports/coverage.json | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "NODE_ENV=test npm run test:unit",
+    "test": "npm-run-all test:unit:clean test:unit",
     "test:check-coverage": "istanbul check-coverage reports/coverage.json --config config/test/istanbul.yml",
     "test:coverage": "npm-run-all test:unit:once test:check-coverage --silent",
-    "test:unit": "rimraf test/unit/mock-builds && mocha --opts config/test/mocha.opts",
-    "test:unit:once": "rimraf test/unit/mock-builds && NODE_ENV=test istanbul cover --config config/test/istanbul.yml _mocha -- --opts config/test/mocha.opts",
+    "test:unit": "NODE_ENV=test mocha --opts config/test/mocha.opts",
+    "test:unit:clean": "rimraf test/unit/mock-builds",
+    "test:unit:once": "npm-run-all test:unit:clean && NODE_ENV=test istanbul cover --config config/test/istanbul.yml _mocha -- --opts config/test/mocha.opts",
     "verify": "npm run verify:js --silent",
     "verify:js": "eslint -c config/verify/.eslintrc -f node_modules/eslint-formatter-pretty .; exit 0",
-    "verify:js:watch": "chokidar 'bin/**/*.js' 'build/**/*.js' 'lib/**/*.js' 'tasks/**/*.js' 'test/**/*.js' 'config/**/*.js' -c 'npm run verify:js' --initial --silent",
+    "verify:js:watch": "chokidar 'bin/**/*.js' 'src/**/*.js' 'test/**/*.js' 'config/**/*.js' -c 'npm run verify:js' --initial --silent",
     "verify:watch": "npm run verify:js:watch"
   }
 }

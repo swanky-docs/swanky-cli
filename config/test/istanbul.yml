@@ -1,5 +1,5 @@
 instrumentation:
-  root: generators/
+  root: src/
 check:
 # global:
 #    statements: 80
