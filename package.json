@@ -20,7 +20,7 @@
     "ghooks": {
       "pre-commit": "npm run exact-semver",
       "commit-msg": "./node_modules/cz-customizable-ghooks/lib/index.js $2",
-      "pre-push": "npm-run-all verify test:unit:once --silent"
+      "pre-push": "npm-run-all verify test:coverage --silent"
     }
   },
   "bin": {
@@ -74,7 +74,7 @@
   "scripts": {
     "commit": "git-cz",
     "exact-semver": "exact-semver",
-    "pre-release": "npm-run-all verify test:coverage build ",
+    "pre-release": "npm-run-all verify test:coverage",
     "report-coverage": "cat ./reports/coverage.json | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "npm-run-all test:unit:clean test:unit",
