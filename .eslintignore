@@ -1,2 +1,3 @@
 src/build/**/templates
 test/unit/mock-builds/**/*
+reports
