@@ -2,7 +2,7 @@ title                   : <%= name %>
 repo                    : https://github.com
 version                 : 0.0.0
 src                     : <%= src %>
-theme                   : <%= src %>/themes/<%= name %>-theme
+theme                   : <%= src %>/themes/<%= nameNormalized %>-theme
 output                  : <%= output %>
 snippets                : <%= src %>/snippets
 

@@ -5,7 +5,7 @@ module.exports = {
   PROCESSORS: [
     {
       name: 'JSDocs',
-      value: 'js-docs'
+      value: 'swanky-processor-jsdocs'
     },
     {
       name: 'NgDocs (Angular flavoured JSDocs)',
