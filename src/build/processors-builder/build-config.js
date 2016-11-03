@@ -1,7 +1,7 @@
 const defaults = require('../../lib/defaults')
 
-module.exports = function() {
-  return {
+module.exports = function(config) {
+  const availableProcessors = {
     [defaults.SWANKY_PROCESSOR_NGDOCS.NAME]: {
       src: 'package.json',
       obj: {
@@ -19,4 +19,8 @@ module.exports = function() {
       }
     }
   }
+
+  return config.processors.map((processor) => {
+    return availableProcessors[processor]
+  });
 }

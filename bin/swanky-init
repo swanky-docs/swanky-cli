@@ -38,17 +38,14 @@ function run() {
   clear() // clear the console
 
   greet()
-  logger.head('1. Configuring documentation. ✓')
+  logger.head('1. Configuring documentation.')
 
   ask((results) => {
-    // TODO - create flow to create new folder or current directory
     results.nameNormalized = _.kebabCase(results.name);
 
     build(results, () => {
-      logger.log('')
-      logger.head('4. Documentation generated successfully ✓')
-
-      goodbye();
+      logger.head('4. Documentation generated successfully')
+      goodbye()
     })
   })
 }

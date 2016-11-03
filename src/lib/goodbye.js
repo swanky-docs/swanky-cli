@@ -2,10 +2,10 @@ const chalk = require('chalk')
 
 module.exports = function() {
   if (process.env.NODE_ENV !== 'test') {
-    console.log('Congratulations on successfully creating your documentation site!')
-    console.log('')
-    console.log('Get started:')
+    console.log(chalk.green('✓ Congratulations on successfully creating your documentation site!\n'))
+    console.log(chalk.bold.white('Get started:'))
     console.log('- run `npm start` to see your documentation site.')
-    console.log('- visit ' + chalk.blue('https://swanky-docs.github.io/docs') + ' for usage and full documentation.')
+    console.log('- visit ' + chalk.blue('https://swanky-docs.github.io/docs') + ' for usage and full\n  documentation.\n')
+    console.log(chalk.grey('--------------------------------------------------------------------\n'))
   }
 }

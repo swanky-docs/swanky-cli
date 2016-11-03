@@ -13,8 +13,8 @@ const sep = chalk.gray('·')
 exports.head = function () {
   if (process.env.NODE_ENV !== 'test') {
     const msg = format.apply(format, arguments)
-    console.log(chalk.grey('--------------------------------------------------------------------'))
-    console.log(chalk.yellow(prefix), sep, msg)
+    console.log(chalk.grey('\n--------------------------------------------------------------------'))
+    console.log(chalk.yellow(prefix), sep, chalk.bold.white(msg))
     console.log(chalk.grey('--------------------------------------------------------------------\n'))
   }
 }
@@ -68,5 +68,5 @@ exports.fatal = function (message) {
 
 exports.success = function () {
   const msg = format.apply(format, arguments)
-  console.log(chalk.green(prefix), sep, msg)
+  console.log(chalk.green('✓'), sep, msg)
 }
