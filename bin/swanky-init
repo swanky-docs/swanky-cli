@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const _ = require('lodash')
+const async = require('async')
 const chalk = require('chalk')
 const clear = require('clear')
 const inquirer = require('inquirer')
@@ -13,7 +14,10 @@ const greet = require('../src/lib/greet')
 const goodbye = require('../src/lib/goodbye')
 const defaults = require('../src/lib/defaults')
 
-// tasks
+// Tasks
+const check = require('../src/tasks/check')
+
+// Builders
 const build = require('../src/build')
 
 // -----------------------------------------------------
@@ -34,23 +38,35 @@ program.parse(process.argv)
 // -----------------------------------------------------
 // Start
 // -----------------------------------------------------
-function run() {
-  clear() // clear the console
-
-  greet()
-  logger.head('1. Configuring documentation.')
-
+function run(callback) {
   ask((results) => {
     results.nameNormalized = _.kebabCase(results.name);
 
     build(results, () => {
       logger.head('4. Documentation generated successfully')
       goodbye()
+      callback()
     })
   })
 }
 
-run()
+async.series([
+  function(callback) {
+    clear() // clear the console
+
+    greet()
+    callback()
+  },
+  function(callback) {
+    check(callback)
+  },
+  function(callback) {
+    logger.head('1. Configuring documentation.')
+    run(callback)
+  }
+], () => {
+  console.log('totes complete!')
+})
 
 // -----------------------------------------------------
 // Prompts
