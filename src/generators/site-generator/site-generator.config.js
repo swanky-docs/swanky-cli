@@ -94,10 +94,8 @@ module.exports = function(answers, basePath) {
     }
   ]
 
-  if (answers.preprocessors) {
-    buildConfig.extend = answers.preprocessors.map((preprocessor) => {
-      return availablePreprocessors[preprocessor]
-    });
+  if (answers.preprocessor) {
+    buildConfig.extend = [availablePreprocessors[answers.preprocessor]]
   }
 
   return buildConfig

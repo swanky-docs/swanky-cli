@@ -28,9 +28,9 @@ module.exports = [
     default: 'swanky-docs/swanky-theme'
   },
   {
-    type: 'checkbox',
-    name: 'preprocessors',
-    message: 'Preprocessors:',
+    type: 'list',
+    name: 'preprocessor',
+    message: 'Preprocessor:',
     choices: DEFAULTS.PREPROCESSORS,
     default: null
   }
