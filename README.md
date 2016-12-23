@@ -13,7 +13,7 @@ $ npm install -g swanky-cli
 ### Usage
 
 ``` bash
-$ swanky init
+$ swanky
 ```
 
 The above command prompts for some information, and generates the project in your current working directory.
