@@ -4,11 +4,10 @@
   "description": "<%= name %> Documentation",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development node <%= src %>/config/start/serve.dev.js",
+    "start": "node <%= src %>/config/start/serve.dev.js",
     "prebuild": "rimraf <%= output %>/",
-    "build": "npm run build:prod",
+    "build": "NODE_ENV=production webpack -p --progress --config <%= src %>/config/build/build.prod.js --profile --colors",
     "build:serve": "npm-run-all build serve:prod",
-    "build:prod": "NODE_ENV=production webpack -p --progress --config <%= src %>/config/build/build.prod.js --profile --colors",
     "serve:prod": "http-server <%= output %> -o"
   },
   "dependencies": {
@@ -18,7 +17,7 @@
     "http-server": "0.9.0",
     "npm-run-all": "3.1.2",
     "rimraf": "2.5.4",
-    "swanky": "2.0.2",
+    "swanky": "2.1.0",
     "webpack": "^2.2.0-rc"
   }
 }
