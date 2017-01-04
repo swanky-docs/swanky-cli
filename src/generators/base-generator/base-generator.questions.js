@@ -32,7 +32,7 @@ module.exports = function (type) {
         return type !== 'site' // this won't exist yet
       },
       default: function () {
-        return findConfig(DEFAULTS.SWANKY_CONFIG).then(function (result) {
+        return findConfig(process.cwd(), DEFAULTS.SWANKY_CONFIG).then(function (result) {
           return result
         }).catch(function () {
           return path.join(process.cwd(), 'swanky.config.yaml')

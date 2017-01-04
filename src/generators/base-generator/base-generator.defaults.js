@@ -17,7 +17,7 @@ const generateSite = require('../site-generator')
 const generateSiteQuestions = require('../site-generator/site-generator.questions')
 
 module.exports = {
-  SWANKY_CONFIG: path.join(basePath, 'swanky.config.yaml'),
+  SWANKY_CONFIG: 'swanky.config.yaml',
   GENERATOR_TEMPLATE_TYPES: [
     {
       name: 'Page',
