@@ -1,8 +1,5 @@
 'use strict'
 
-const path = require('path')
-const basePath = process.cwd()
-
 // Generators
 const generatePage = require('../page-generator')
 const generatePageQuestions = require('../page-generator/page-generator.questions')
