@@ -1,5 +1,5 @@
 <% if (hasParent) { %>
-##<%= name %>
+## <%= name %>
 <% } else { %>
 This is some content.
 <% } %>
