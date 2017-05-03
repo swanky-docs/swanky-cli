@@ -1,6 +1,6 @@
 {
   "name": "swanky-cli",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.0-development",
   "preferGlobal": true,
   "description": "A simple CLI for scaffolding Swanky Docs projects.",
   "author": "Rod Leviton",
