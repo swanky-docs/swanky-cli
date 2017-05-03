@@ -29,12 +29,7 @@ module.exports = function(filePath) {
 }
 
 function loadJSConfig(filePath) {
-  // prevent require caching file
-  // if (require.cache[filepath]) {
-  //   delete require.cache[filepath]
-  // }
-
-  /* eslint-disable global-require */
+  /* eslint-disable global-require  */
   return require(filePath);
   /* eslint-enable global-require */
 }
