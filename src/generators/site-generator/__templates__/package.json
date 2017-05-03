@@ -11,13 +11,13 @@
     "serve:prod": "http-server <%= output %> -o"
   },
   "dependencies": {
-    "highlightjs": "9.8.0"
+    "highlightjs": "9.10.0"
   },
   "devDependencies": {
-    "http-server": "0.9.0",
-    "npm-run-all": "4.0.0",
-    "rimraf": "2.5.4",
-    "swanky": "^2.5.0",
-    "webpack": "^2.2.0"
+    "http-server": "0.10.0",
+    "npm-run-all": "4.0.2",
+    "rimraf": "2.6.1",
+    "swanky": "^4.0.1",
+    "webpack": "^2.4.1"
   }
 }

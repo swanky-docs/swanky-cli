@@ -10,8 +10,8 @@ module.exports = {
       value: null
     },
     {
-      name: 'NgDocs (Angular flavoured JSDocs)',
-      value: 'swanky-processor-ngdocs'
+      name: 'JSDoc',
+      value: 'swanky-processor-jsdoc'
     }
   ],
   THEMES: [
@@ -21,7 +21,7 @@ module.exports = {
     }
   ],
   SWANKY_PROCESSOR_NGDOCS: {
-    NAME: 'swanky-processor-ngdocs',
-    VERSION: '2.2.3'
+    NAME: 'swanky-processor-jsdoc',
+    VERSION: '1.1.2'
   }
 }

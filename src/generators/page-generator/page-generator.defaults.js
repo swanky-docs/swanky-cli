@@ -7,18 +7,18 @@ module.exports = {
       value: null
     },
     {
-      name: 'NgDocs (Angular flavoured JSDocs)',
-      value: 'swanky-processor-ngdocs'
+      name: 'JSDoc',
+      value: 'swanky-processor-jsdoc'
     }
   ],
   PACKAGES: {
-    'swanky-processor-ngdocs': {
-      version: '2.2.3'
+    'swanky-processor-jsdoc': {
+      version: '1.1.2'
     }
   },
   TEMPLATES: {
-    'swanky-processor-ngdocs': {
-      name: 'swanky-processor-ngdocs.js',
+    'swanky-processor-jsdoc': {
+      name: 'swanky-processor-jsdoc.js',
       extension: '.js'
     },
     default: {

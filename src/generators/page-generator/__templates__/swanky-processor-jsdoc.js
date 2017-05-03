@@ -1,15 +1,13 @@
 /**
- * @ngdoc directive
+ * @kind component
  *
  * @name swanky.components.card:cardAction
- *
- * @scope
  *
  * @description
  * Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut molestie leo, ut suscipit est.
  * Sed ut molestie ligula.
  *
- * @param {String} type Type of action
+ * @param {String} type Type of action [comment|like]
  *
  * @usage
  * ```html

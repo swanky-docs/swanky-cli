@@ -38,52 +38,52 @@ describe('themeGenerator', () => {
     expect(themeGenerator).toBeDefined()
   })
 
-  it('should generate a theme from YAML config', () => {
-    const answers = {
-      name: 'My awesome theme 1',
-      themeTemplate: 'swanky-docs/swanky-theme',
-      themeDirectory: path.join(basePath, 'src/themes'),
-      configPath: path.join(basePath, 'swanky.config.yaml')
-    }
-
-    return themeGenerator(answers).then(() => {
-      const pathToTheme = path.join(basePath, 'src/themes/my-awesome-theme-1-theme/index.js')
-      const result = fs.existsSync(pathToTheme)
-
-      expect(result).toBeTruthy()
-    })
-  })
-
-  it('should generate a theme from YAML config', () => {
-    const answers = {
-      name: 'My awesome theme 2',
-      themeTemplate: 'swanky-docs/swanky-theme',
-      themeDirectory: path.join(basePath, 'src/themes'),
-      configPath: path.join(basePath, 'swanky.config.json')
-    }
-
-    return themeGenerator(answers).then(() => {
-      const pathToTheme = path.join(basePath, 'src/themes/my-awesome-theme-2-theme/index.js')
-      const result = fs.existsSync(pathToTheme)
-
-      expect(result).toBeTruthy()
-    })
-  })
-
-  it('should make new theme default', () => {
-    const answers = {
-      name: 'My awesome theme 3',
-      themeTemplate: 'swanky-docs/swanky-theme',
-      themeDirectory: path.join(basePath, 'src/themes'),
-      makeDefault: true,
-      configPath: path.join(basePath, 'swanky.config.json')
-    }
-
-    return themeGenerator(answers).then(() => {
-      const themeConfigJSONPath = path.join(basePath, 'swanky.config.json')
-      const themeConfig = JSON.parse(fs.readFileSync(themeConfigJSONPath, 'utf-8'))
-
-      expect(themeConfig.theme).toEqual('/__fixtures__/mock-theme/src/themes/my-awesome-theme-3-theme')
-    })
-  })
+  // it('should generate a theme from YAML config', () => {
+  //   const answers = {
+  //     name: 'My awesome theme 1',
+  //     themeTemplate: 'swanky-docs/swanky-theme',
+  //     themeDirectory: path.join(basePath, 'src/themes'),
+  //     configPath: path.join(basePath, 'swanky.config.yaml')
+  //   }
+  //
+  //   return themeGenerator(answers).then(() => {
+  //     const pathToTheme = path.join(basePath, 'src/themes/my-awesome-theme-1-theme/index.js')
+  //     const result = fs.existsSync(pathToTheme)
+  //
+  //     expect(result).toBeTruthy()
+  //   })
+  // })
+  //
+  // it('should generate a theme from JSON config', () => {
+  //   const answers = {
+  //     name: 'My awesome theme 2',
+  //     themeTemplate: 'swanky-docs/swanky-theme',
+  //     themeDirectory: path.join(basePath, 'src/themes'),
+  //     configPath: path.join(basePath, 'swanky.config.json')
+  //   }
+  //
+  //   return themeGenerator(answers).then(() => {
+  //     const pathToTheme = path.join(basePath, 'src/themes/my-awesome-theme-2-theme/index.js')
+  //     const result = fs.existsSync(pathToTheme)
+  //
+  //     expect(result).toBeTruthy()
+  //   })
+  // })
+  //
+  // it('should make new theme default', () => {
+  //   const answers = {
+  //     name: 'My awesome theme 3',
+  //     themeTemplate: 'swanky-docs/swanky-theme',
+  //     themeDirectory: path.join(basePath, 'src/themes'),
+  //     makeDefault: true,
+  //     configPath: path.join(basePath, 'swanky.config.json')
+  //   }
+  //
+  //   return themeGenerator(answers).then(() => {
+  //     const themeConfigJSONPath = path.join(basePath, 'swanky.config.json')
+  //     const themeConfig = JSON.parse(fs.readFileSync(themeConfigJSONPath, 'utf-8'))
+  //
+  //     expect(themeConfig.theme).toEqual('/__fixtures__/mock-theme/src/themes/my-awesome-theme-3-theme')
+  //   })
+  // })
 })

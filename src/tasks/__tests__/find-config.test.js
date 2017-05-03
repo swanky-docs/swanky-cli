@@ -20,13 +20,7 @@ describe('findConfig', () => {
     })
   })
 
-  it('should resolve from the default config location', () => {
-    return findConfig(basePath, DEFAULT_CONFIG_PATH).then((result) => {
-      expect(result).toEqual(DEFAULT_CONFIG_PATH)
-    })
-  })
-
-  it('should resolve from the default config location', () => {
+  it('should resolve from a user entered config location', () => {
     const expectedResult = path.join(__dirname, './../__mocks__/__fixtures__/swanky.config.yml')
 
     return findConfig(basePath, '/some/made/up/path').then((result) => {
