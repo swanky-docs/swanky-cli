@@ -10,11 +10,11 @@ module.exports = function(answers, basePath) {
   let buildConfig = {}
 
   const availablePreprocessors = {
-    [DEFAULTS.SWANKY_PROCESSOR_NGDOCS.NAME]: {
+    [DEFAULTS.SWANKY_PROCESSOR_JSDOC.NAME]: {
       src: path.join(basePath, 'package.json'),
       obj: {
         devDependencies: {
-          [DEFAULTS.SWANKY_PROCESSOR_NGDOCS.NAME]: DEFAULTS.SWANKY_PROCESSOR_NGDOCS.VERSION
+          [DEFAULTS.SWANKY_PROCESSOR_JSDOC.NAME]: DEFAULTS.SWANKY_PROCESSOR_JSDOC.VERSION
         }
       }
     }

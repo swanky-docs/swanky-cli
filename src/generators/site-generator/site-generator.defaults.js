@@ -20,8 +20,8 @@ module.exports = {
       value: 'swanky-docs/swanky-theme'
     }
   ],
-  SWANKY_PROCESSOR_NGDOCS: {
+  SWANKY_PROCESSOR_JSDOC: {
     NAME: 'swanky-processor-jsdoc',
-    VERSION: '1.1.2'
+    VERSION: '^1.1.3'
   }
 }

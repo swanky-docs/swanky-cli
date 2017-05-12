@@ -13,7 +13,7 @@ module.exports = {
   ],
   PACKAGES: {
     'swanky-processor-jsdoc': {
-      version: '1.1.2'
+      version: '^1.1.3'
     }
   },
   TEMPLATES: {
