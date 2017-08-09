@@ -40,6 +40,14 @@ module.exports = function(options) {
         })
       }
 
+      cmd.stdout.on('data', (data) => {
+        console.log(`${data}`);
+      });
+
+      cmd.stderr.on('data', (data) => {
+        console.error(`${data}`);
+      });
+
       cmd.on('close', () => {
         spinner.stopAndPersist(chalk.green('✓'))
         resolve('All packages installed successfully with ' + installCommand)
