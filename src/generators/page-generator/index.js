@@ -47,7 +47,7 @@ function run(answers, config) {
     .then(commitFiles, handleError)
     .then(() => install())
     .finally(() => {
-      logger.success(`New page created successfully.\n`)
+      logger.success(`new page created successfully\n`)
     })
 }
 
@@ -66,6 +66,6 @@ function commitFiles() {
  * Handle errors
  */
 function handleError() {
-  logger.warning(`Warning: page not created\n`)
+  logger.warning(`warning: page not created\n`)
 }
 

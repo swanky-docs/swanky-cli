@@ -29,15 +29,14 @@ function BaseBuilder(config, buildConfig, fs) {
  * Start progress spinner
  */
 BaseBuilder.prototype.startSpinner = function(msg) {
-  this.spinner.text = msg
-  this.spinner.start()
+  this.spinner.start(msg)
 }
 
 /**
  * Stop progress spinner
  */
 BaseBuilder.prototype.stopSpinner = function() {
-  this.spinner.stopAndPersist(chalk.green('✓'))
+  this.spinner.succeed()
 }
 
 /**

@@ -5,7 +5,6 @@ const R = require('ramda')
 const commandExists = require('command-exists')
 const spawn = require('cross-spawn')
 const ora = require('ora')
-const chalk = require('chalk')
 
 /**
  * Install Dependencies
@@ -16,7 +15,7 @@ module.exports = function(options) {
   return new Promise((resolve) => {
 
     let installCommand = 'npm' // default
-    const spinner = ora('installing packages')
+    const spinner = ora('installing dependencies')
     const baseInstallOptions = { stdio: 'pipe', encoding: 'utf-8' }
     options = options ? R.merge(baseInstallOptions, options) : options
 
@@ -25,32 +24,31 @@ module.exports = function(options) {
         installCommand = 'yarn'
       }
 
-      if(err) {
-        resolve('Could not install dependencies. Please run `npm i`.')
+      if (err) {
+        resolve('could not install dependencies. Please run `npm i`.')
       }
 
       spinner.start()
       const cmd = spawn(installCommand, ['install'], options)
 
       // Clean up Yarn stdout output
-      if(installCommand === 'yarn') {
-        cmd.stdout.on('data', function (data) {
-          const str = data.toString().replace(/\n/g, '')
-          spinner.text = str
+      if (installCommand === 'yarn') {
+        cmd.stdout.on('data', function () {
+          // const str = data.toString().replace(/\n/g, '')
         })
       }
 
       cmd.stdout.on('data', (data) => {
-        console.log(`${data}`);
+        spinner.start(`${data}`);
       });
 
-      cmd.stderr.on('data', (data) => {
-        console.error(`${data}`);
+      cmd.stderr.on('data', () => {
+        // console.error(`${data}`);
       });
 
       cmd.on('close', () => {
-        spinner.stopAndPersist(chalk.green('✓'))
-        resolve('All packages installed successfully with ' + installCommand)
+        spinner.succeed('installing dependencies');
+        resolve('all packages installed successfully with ' + installCommand)
       });
 
     })

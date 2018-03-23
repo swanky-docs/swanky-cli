@@ -46,7 +46,7 @@ function run(answers, config) {
     .then(commitFiles, handleError)
     .then(() => install())
     .finally(() => {
-      logger.success(`New theme created successfully.\n`)
+      logger.success(`new theme created successfully\n`)
     })
 }
 
@@ -65,6 +65,6 @@ function commitFiles() {
  * Handle errors
  */
 function handleError() {
-  logger.warning(`Warning: theme not created\n`)
+  logger.warning(`warning: theme not created\n`)
 }
 

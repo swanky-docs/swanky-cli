@@ -44,7 +44,7 @@ function run(answers, basePath) {
     .then(commitFiles, handleError)
     .then(() => install())
     .finally(() => {
-      logger.success(`New site created successfully.\n`)
+      logger.success(`new site created successfully\n`)
     })
 }
 
@@ -64,6 +64,6 @@ function commitFiles() {
  */
 function handleError(err) {
   console.log(err)
-  logger.warning(`Warning: site not created\n`)
+  logger.warning(`warning: site not created\n`)
 }
 

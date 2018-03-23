@@ -18,7 +18,7 @@ describe('check', () => {
     packageConfig.version = '1.0.0'
 
     // current mocked node version
-    process.version = '4.2'
+    process.version = '8'
   })
 
   it('should exist', () => {
@@ -28,7 +28,7 @@ describe('check', () => {
   describe('minimum node version', () => {
     it('valid node version', () => {
       return check().then(() => {
-        expect(console.log).not.toHaveBeenCalledWith(chalk.red('  You must upgrade node to >=4.x to use swanky-cli'));
+        expect(console.log).not.toHaveBeenCalledWith(chalk.red('  You must upgrade node to >=6.x to use swanky-cli'));
       })
     })
 
@@ -36,17 +36,17 @@ describe('check', () => {
       process.version = '0.12'
 
       return check().then(() => {
-        expect(console.log).toHaveBeenCalledWith(chalk.red('  You must upgrade node to >=4.x to use swanky-cli'));
+        expect(console.log).toHaveBeenCalledWith(chalk.red('  You must upgrade node to >=6.x to use swanky-cli'));
       })
     })
   })
 
   it('should determine local configuration', () => {
     const expectedResult = {
-      currentNodeVersion: 4.2,
+      currentNodeVersion: 8,
       latestVersion: '2.0.0',
       localVersion: '1.0.0',
-      minNodeVersion: 4
+      minNodeVersion: 6
     }
 
     return check().then((config) => {
@@ -60,10 +60,10 @@ describe('check', () => {
     packageConfig.version = '2.0.0'
 
     const expectedResult = {
-      currentNodeVersion: 4.2,
+      currentNodeVersion: 8,
       latestVersion: '2.0.0',
       localVersion: '2.0.0',
-      minNodeVersion: 4
+      minNodeVersion: 6
     }
 
     return check().then((config) => {
@@ -82,8 +82,8 @@ describe('check', () => {
     })
 
     const expectedResult = {
-      currentNodeVersion: 4.2,
-      minNodeVersion: 4
+      currentNodeVersion: 8,
+      minNodeVersion: 6
     }
 
     return check().then((config) => {

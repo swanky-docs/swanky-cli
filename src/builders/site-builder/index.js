@@ -41,6 +41,7 @@ SiteBuilder.prototype = Object.create(BaseBuilder.prototype)
  */
 SiteBuilder.prototype.downloadAndGenerate = function() {
   return new Promise((resolve) => {
+    console.log('')
     this.startSpinner('downloading theme template')
 
     download(this.buildConfig.themeTemplate, this.buildConfig.templateDirectory, { clone: false }, (err) => {

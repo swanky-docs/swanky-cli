@@ -29,9 +29,9 @@ module.exports = function(filePath) {
 }
 
 function loadJSConfig(filePath) {
-  /* eslint-disable global-require  */
+  /* eslint-disable global-require, import/no-dynamic-require  */
   return require(filePath);
-  /* eslint-enable global-require */
+  /* eslint-enable global-require, import/no-dynamic-require */
 }
 
 function loadYAMLConfig(filePath) {

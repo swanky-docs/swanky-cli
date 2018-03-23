@@ -41,10 +41,10 @@ ThemeBuilder.prototype = Object.create(BaseBuilder.prototype)
  */
 ThemeBuilder.prototype.downloadAndGenerate = function() {
   return new Promise((resolve) => {
-    this.startSpinner('downloading theme template')
+    // this.startSpinner('downloading theme template')
 
     download(this.buildConfig.themeTemplate, this.buildConfig.templateDirectory, { clone: false }, (err) => {
-      this.stopSpinner()
+      // this.stopSpinner()
 
       // Cleanup temporary theme files on exit
       process.on('exit', () => {
