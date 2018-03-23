@@ -44,7 +44,7 @@ function run(answers, config) {
   return snippetBuilder.build()
     .then(commitFiles, handleError)
     .finally(() => {
-      logger.success(`New snippet created successfully.\n`)
+      logger.success(`new snippet created successfully\n`)
     })
 }
 
@@ -63,6 +63,6 @@ function commitFiles() {
  * Handle errors
  */
 function handleError() {
-  logger.warning(`Warning: snippet not created\n`)
+  logger.warning(`warning: snippet not created\n`)
 }
 

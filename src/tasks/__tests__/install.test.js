@@ -12,6 +12,7 @@ const commandExists = require('command-exists')
 describe('install', () => {
   beforeEach(() => {
     console.log = jest.genMockFn()
+    console.error = jest.genMockFn()
   })
 
   afterEach(() => {
@@ -37,7 +38,7 @@ describe('install', () => {
     })
 
     return install().then((result) => {
-      expect(result).toEqual('Could not install dependencies. Please run `npm i`.')
+      expect(result).toEqual('could not install dependencies. Please run `npm i`.')
     })
   })
 
@@ -48,7 +49,7 @@ describe('install', () => {
     })
 
     return install({ cwd: basePath }).then((result) => {
-      expect(result).toEqual('All packages installed successfully with yarn')
+      expect(result).toEqual('all packages installed successfully with yarn')
     })
   })
 
@@ -59,7 +60,7 @@ describe('install', () => {
     })
 
     return install({ cwd: basePath }).then((result) => {
-      expect(result).toEqual('All packages installed successfully with npm')
+      expect(result).toEqual('all packages installed successfully with npm')
     })
   })
 

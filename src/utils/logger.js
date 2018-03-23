@@ -49,5 +49,5 @@ exports.fatal = function () {
  */
 exports.success = function () {
   const msg = format.apply(format, arguments)
-  console.log(chalk.green('✓'), msg)
+  console.log(chalk.green('✔'), msg)
 }
